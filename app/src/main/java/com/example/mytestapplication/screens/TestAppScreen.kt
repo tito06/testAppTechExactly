@@ -192,7 +192,7 @@ fun TestAppBody(vm: TestAppVm = hiltViewModel()) {
                     .padding(8.dp)
             ) {
                 items(appList) { app ->
-                    AppCard(appName = app.app_name, appIcon = app.app_icon)
+                    AppCard(appName = app.app_name, appIcon = app.app_icon, active = app.status)
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
@@ -234,7 +234,7 @@ fun TestAppBodyPackage(vm: TestAppVm = hiltViewModel()) {
                     .padding(8.dp)
             ) {
                 items(appList) { app ->
-                    AppCard(appName = app.app_package_name, appIcon = app.app_icon)
+                    AppCard(appName = app.app_package_name, appIcon = app.app_icon, active = app.status)
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
@@ -250,9 +250,9 @@ fun TestAppBodyPackage(vm: TestAppVm = hiltViewModel()) {
 }
 
 @Composable
-fun AppCard(appName: String, appIcon: String) {
+fun AppCard(appName: String, appIcon: String, active:String) {
     // State for the toggle button
-    var isToggled by remember { mutableStateOf(false) }
+    var isToggled by remember { mutableStateOf(active == "Active") }
 
     Card(
         modifier = Modifier
