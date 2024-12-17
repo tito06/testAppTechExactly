@@ -81,5 +81,14 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
     implementation (libs.logging.interceptor)
+
+    implementation (libs.androidx.foundation)
+    implementation (libs.coil.compose)
+
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.24.13-rc")
+
+
+    implementation (libs.accompanist.pager)
+
 }
 
