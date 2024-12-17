@@ -27,6 +27,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -53,6 +54,7 @@ import com.example.mytestapplication.R
 import com.example.mytestapplication.helper.AppListState
 import kotlinx.coroutines.launch
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.clip
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -249,6 +251,9 @@ fun TestAppBodyPackage(vm: TestAppVm = hiltViewModel()) {
 
 @Composable
 fun AppCard(appName: String, appIcon: String) {
+    // State for the toggle button
+    var isToggled by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -259,7 +264,9 @@ fun AppCard(appName: String, appIcon: String) {
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp)
         ) {
             // App Icon
             Image(
@@ -277,11 +284,21 @@ fun AppCard(appName: String, appIcon: String) {
             Text(
                 text = appName,
                 fontSize = 18.sp,
-                color = Color.Black
+                color = Color.Black,
+                modifier = Modifier.weight(1f) // Pushes the toggle to the right
+            )
+
+            // Toggle Switch
+            Switch(
+                checked = isToggled,
+                onCheckedChange = { isChecked ->
+                    isToggled = isChecked
+                }
             )
         }
     }
 }
+
 
 
 @Composable
